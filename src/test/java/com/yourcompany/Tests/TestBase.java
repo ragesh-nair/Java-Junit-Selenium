@@ -145,7 +145,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     }
 
     public static String buildSauceUri() {
-        String seleniumURI = buildSauceUri();
+        String seleniumURI = "@ondemand.saucelabs.com:443";
         String seleniumPort = System.getenv("SELENIUM_PORT");
         String seleniumHost = System.getenv("SELENIUM_HOST");
         if (seleniumPort != null &&
