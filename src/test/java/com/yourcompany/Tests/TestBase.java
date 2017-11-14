@@ -144,6 +144,21 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         return sessionId;
     }
 
+    public static String buildSauceUri() {
+        String seleniumURI = buildSauceUri();
+        String seleniumPort = System.getenv("SELENIUM_PORT");
+        String seleniumHost = System.getenv("SELENIUM_HOST");
+        if (seleniumPort != null &&
+                seleniumHost != null &&
+                !seleniumHost.contentEquals("ondemand.saucelabs.com")) {
+            //While running in CI, if Sauce Connect is running the SELENIUM_PORT env var will be set.
+            //use SC relay port
+            seleniumURI = String.format("@localhost:%s", seleniumPort);
+
+        }
+        return seleniumURI;
+    }
+
     @BeforeClass
     public static void setupClass() {
         //get the uri to send the commands to.
