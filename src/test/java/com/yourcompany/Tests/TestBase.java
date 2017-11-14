@@ -144,7 +144,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         return sessionId;
     }
 
-    public static String buildSauceUri() {
+    /*public static String buildSauceUri() {
         String seleniumURI = "@ondemand.saucelabs.com:443";
         String seleniumPort = System.getenv("SELENIUM_PORT");
         String seleniumHost = System.getenv("SELENIUM_HOST");
@@ -157,12 +157,14 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
 
         }
         return seleniumURI;
-    }
+    }*/
 
     @BeforeClass
     public static void setupClass() {
         //get the uri to send the commands to.
-        seleniumURI = buildSauceUri();
+        String seleniumPort = System.getenv("SELENIUM_PORT");
+        //String seleniumHost = System.getenv("SELENIUM_HOST");
+        seleniumURI = String.format("@localhost:%s", seleniumPort);
         //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
         //You can set this manually on manual runs.
         buildTag = System.getenv("BUILD_TAG");
