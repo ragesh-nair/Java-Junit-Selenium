@@ -127,6 +127,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         this.driver = new RemoteWebDriver(
                 new URL("https://" + username+ ":" + accesskey + seleniumURI +"/wd/hub"),
                 capabilities);
+                System.out.println("https://" + username + ":" + accesskey + seleniumURI +"/wd/hub");
 
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
     }
